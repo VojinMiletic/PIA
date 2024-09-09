@@ -1,0 +1,48 @@
+<h3>Dobro došli</h3><br>
+<button (click)="odjava()">Odjava</button><br><br>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" (click)="idiNaZakazivanja()">Zakazivanja</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="idiNaOdrzavanje()">Održavanja</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="idiNaStatistiku()">Statistika</a>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+<br><br>
+Vaši podaci: <br>
+<table border="1px" >
+    <tr>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Korisnicko ime</th>
+        <th>Mejl</th>
+        <th>Adresa</th>
+        <th>Broj kartice</th>
+        <th>Broj telefona</th>
+        <th>Slika</th>
+    </tr>
+    <tr>
+        <td>{{k.ime}}</td>
+        <td>{{k.prezime}}</td>
+        <td>{{k.kor_ime}}</td>
+        <td>{{k.mejl}}</td>
+        <td>{{k.adresa}}</td>
+        <td>{{k.broj_kartice}}</td>
+        <td>{{k.telefon}}</td>
+        <td> <img [src]="dohvatiSliku(k)" width="100px" height="100px" alt=""></td>
+        <td> 
+            <button (click)="izmeniPodatkeKorisnika(k)">Izmeni podatke</button>
+        </td>
+    </tr>
+</table>
+<br>
+Ne sviđa Vam se lozinka? <a (click)="promenaLozinke(k)" class="custom-link"> Promena lozinke</a>

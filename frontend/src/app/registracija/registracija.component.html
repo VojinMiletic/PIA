@@ -1,0 +1,103 @@
+<button (click)="nazad()">Nazad</button><br><br>
+Unesite vaše podatke: <br><br>
+<table class="no-style">
+    <tr>
+        <td>
+            Korisničko ime: 
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="k.kor_ime">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Lozinka:  
+        </td>
+        <td>
+            <input type="password" [(ngModel)]="lozinka" (input)="proveriLozinku()"> &nbsp;
+            <span *ngIf="proveriLozinku()" style="color: blue;">
+                {{porukaLozinka}}
+            </span>
+            <span *ngIf="!proveriLozinku() && lozinka.length != 0" style="color: red;">
+                {{porukaLozinka}}
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Mejl:  
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="k.mejl">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Ime: 
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="k.ime">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Prezime: 
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="k.prezime">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Adresa:  
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="k.adresa">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Telefon:   
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="k.telefon">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Broj kreditne kartice:    
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="k.broj_kartice"> &nbsp;
+            <img [src]="proveriKarticu(k)" alt="" height="35px">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Pol:
+        </td>
+        <td>
+            <input type="radio" value="M" name="pol" [(ngModel)]="k.pol"> Muški
+            <input type="radio" value="Z" name="pol" [(ngModel)]="k.pol"> Ženski
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Slika:
+        </td>
+        <td>
+            <input type="file" (input)="ubaciSliku($event)">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <re-captcha (resolved)="resolve($event)" siteKey="6LcVQzEqAAAAAMeluWnau-WmjGzvN6EP7lqNIXp2"></re-captcha>
+        </td>
+    </tr>
+</table>
+<br>
+<button (click)="registrujSe()" *ngIf="jelRobot()">Registracija</button>
+<br>
+<span style="color: red;">
+    {{poruka}}
+</span>

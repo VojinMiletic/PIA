@@ -1,0 +1,8 @@
+Prijavite se kao administrator: <br>
+<input type="text" placeholder="Korisnicko ime" [(ngModel)]="k.kor_ime"><br>
+<input type="password" placeholder="Lozinka" [(ngModel)]="lozinka"><br>
+<button (click)="prijava()">Prijava</button><br>
+<span style="color: red;">
+    {{poruka}}
+    <br>
+</span>

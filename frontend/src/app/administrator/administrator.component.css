@@ -1,0 +1,15 @@
+.table-container {
+    max-height: 150px; /* Fiksna visina kontejnera tabele */
+    overflow-y: auto;  /* Dodaje vertikalnu skrol traku kada sadržaj prelazi visinu kontejnera */
+}
+
+.table-container-2 {
+    max-height: 60px; /* Fiksna visina kontejnera tabele */
+    overflow-y: auto;  /* Dodaje vertikalnu skrol traku kada sadržaj prelazi visinu kontejnera */
+}
+
+.limited-width {
+    max-width: 110px; /* Maksimalna širina kolone */
+    word-wrap: break-word; /* Omogućava prelamanje reči u novi red */
+    overflow-wrap: break-word; /* Alternativa za prelamanje reči */
+  }

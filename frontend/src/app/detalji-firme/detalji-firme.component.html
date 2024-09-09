@@ -1,0 +1,151 @@
+<button (click)="nazad()">Nazad</button> &nbsp;
+<button (click)="odjava()">Odjava</button>
+<br><br>
+<h3>{{f.naziv}}</h3>
+<br>
+<table border="1px">
+    <tr>
+        <th>Naziv</th>
+        <th>Adresa</th>
+        <th>Kontakt telefon</th>
+        <th>Usluge</th>
+        <th>Lokacija</th>
+    </tr>
+    <tr>
+        <td>{{f.naziv}}</td>
+        <td>{{f.adresa}}</td>
+        <td>{{f.kontakt_osoba}}</td>
+        <td >
+            <div class="table-container">
+                <table >
+                    <tr>
+                        <td style="font-weight: bold;">Naziv</td>
+                        <td style="font-weight: bold;">Cena</td>
+                    </tr>
+                    <tr *ngFor="let u of f.usluge">
+                        <td>{{u.usluga}}</td>
+                        <td> {{u.cena}}</td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>
+            <iframe [src]="dajLokaciju(f)" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </td>
+    </tr>
+</table>
+<br>
+<br>
+<div class="komentari">
+    <h3>Komentari</h3>
+    <div *ngFor="let k of f.komentari">
+      <div class="komentar">
+        <p>{{ k }}</p>
+      </div>
+    </div>
+    <span *ngIf="f.komentari.length == 0">
+        <p>Još uvek niko nije komentarisao.</p>
+    </span>
+</div>
+<br>
+<h3>Naruči uređivanje</h3>
+<span *ngIf="korak == 1">
+    <table class="no-style">
+        <tr>
+            <td>Datum i vreme početka</td>
+            <td>&nbsp; <input type="datetime-local" [(ngModel)]="noviZahtev.datum_pocetak"> </td>
+        </tr>
+        <tr>
+            <td>Ukupna kvadratura</td>
+            <td>&nbsp; <input type="number" [(ngModel)]="noviZahtev.ukupno_kvadrata"> </td>
+        </tr>
+        <tr>
+            <td>Tip bašte</td>
+            <td>
+                <input type="radio" value="privatna" (click)="ponistiPrethodno()" [(ngModel)]="noviZahtev.tip">Privatna &nbsp;
+                <input type="radio" value="restoran" (click)="ponistiPrethodno()" [(ngModel)]="noviZahtev.tip">Restoran &nbsp;
+            </td>
+        </tr>
+    </table>
+    <br><button (click)="sledeciKorak()">Sledeci korak</button><br>
+</span>
+<span *ngIf="korak == 2">
+    <span *ngIf="noviZahtev.tip == 'privatna'">
+        <table class="no-style">
+            <tr>
+                <td>Kvadratura bazena</td>
+                <td> &nbsp; <input type="number" [(ngModel)]="noviZahtev.bazen"> </td>
+            </tr>
+            <tr>
+                <td>Kvadratura zelenila</td>
+                <td> &nbsp; <input type="number" [(ngModel)]="noviZahtev.zelenilo"> </td>
+            </tr>
+            <tr>
+                <td>Kvadratura pod lezaljkama <br> ili stolovima</td>
+                <td> &nbsp; <input type="number" [(ngModel)]="noviZahtev.lezaljke_stolovi"> </td>
+            </tr>
+        </table>
+    </span>
+    <span *ngIf="noviZahtev.tip == 'restoran'">
+        <table class="no-style">
+            <tr>
+                <td>Kvadratura fontana</td>
+                <td> &nbsp; <input type="number" [(ngModel)]="noviZahtev.fontana"> </td>
+            </tr>
+            <tr>
+                <td>Kvadratura zelenila</td>
+                <td> &nbsp; <input type="number" [(ngModel)]="noviZahtev.zelenilo"> </td>
+            </tr>
+            <tr>
+                <td>Broj stolova <br> ili stolica</td>
+                <td> &nbsp; <input type="number" [(ngModel)]="noviZahtev.stolovi_stolice"> </td>
+            </tr>
+        </table>
+    </span>
+    Ako želite dodajte kratki opis posla: <br>
+    <textarea [(ngModel)]="noviZahtev.opis" style="width: 250px;">
+    </textarea>
+    <br>
+    Odaberite uslugu:<br>
+    <ul style="list-style-type: none;">
+        <li *ngFor="let u of f.usluge">
+            <input type="checkbox" [checked]="jelOdabran(u)" (click)="dodajUslugu(u, $event)"> {{u.usluga}} &nbsp; {{u.cena}}$
+        </li>
+    </ul>
+    <br><button (click)="sledeciKorak()">Sledeci korak</button> &nbsp;
+    <button (click)="prethodniKorak()">Prethodni korak</button><br>
+</span>
+
+
+<span *ngIf="korak == 3">
+
+    <select [(ngModel)]="odabraniOblik">
+        <option value="bazen" [disabled]="noviZahtev.bazen == 0">Bazen</option>
+        <option value="fontana" [disabled]="noviZahtev.fontana == 0">Fontana</option>
+        <option value="sto" [disabled]="noviZahtev.stolovi_stolice + noviZahtev.lezaljke_stolovi == 0">Sto</option>
+        <option value="stolica" [disabled]="noviZahtev.stolovi_stolice + noviZahtev.lezaljke_stolovi == 0">Stolica/Ležaljka</option>
+        <option value="zelenilo" [disabled]="noviZahtev.zelenilo == 0">Zelena površina</option>
+    </select>
+    <br>
+
+    <br><button (click)="posaljiZahtev()">Posalji zahtev</button> &nbsp;
+    <button (click)="prethodniKorak()">Prethodni korak</button>
+    <br><br>
+</span>
+<span *ngIf="korak == 3">
+    <br>
+    <strong>Nacrtajte vaš plan</strong> &nbsp; ili uvezite JSON fajl:
+    <input type="file" (change)="ubacenFajl($event)" accept=".json" /><br><br>
+</span>
+<canvas *ngIf="prikaziKanvas()" #gardenCanvas width="500" height="300" (click)="onCanvasClick($event)"></canvas>
+<span *ngIf="korak == 3">
+    <br>
+    <button (click)="izbrisiPoslednje()">Izbriši poslednje</button>
+</span>
+<br><br>
+<span style="color: red;">
+    <br><br>
+    {{porukaGreske}}
+</span>
+
+

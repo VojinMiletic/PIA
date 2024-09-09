@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "66c2eec74ca4b6dafa433e4a"
+  },
+  "idO": 0,
+  "idZ": -1,
+  "vlasnik": "",
+  "firma": "",
+  "dekorater": "",
+  "datum_pocetak": "",
+  "datum_kraj": "",
+  "status": ""
+},
+{
+  "_id": {
+    "$oid": "66c2fb377171382fd7f93718"
+  },
+  "idO": 1,
+  "idZ": 6,
+  "vlasnik": "anci",
+  "firma": "Firma2",
+  "dekorater": "dule",
+  "datum_pocetak": "2024-08-19T09:58",
+  "datum_kraj": "2024-08-20T10:00",
+  "status": "prihvacen",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c4355d7171382fd7f93754"
+  },
+  "idO": 2,
+  "idZ": 11,
+  "vlasnik": "anci",
+  "firma": "Firma2",
+  "dekorater": "",
+  "datum_pocetak": "2024-08-23T08:18",
+  "datum_kraj": "",
+  "status": "odbijen",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c872ba4b4e32a285c85013"
+  },
+  "idO": 3,
+  "idZ": 14,
+  "vlasnik": "voja",
+  "firma": "Firma1",
+  "dekorater": "",
+  "datum_pocetak": "2024-08-25T13:29",
+  "datum_kraj": "",
+  "status": "odbijen",
+  "__v": 0
+}]

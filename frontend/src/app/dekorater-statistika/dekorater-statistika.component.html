@@ -1,0 +1,21 @@
+<button (click)="nazad()">Nazad</button> &nbsp;
+<button (click)="odjava()">Odjava</button>
+<br><br>
+
+<h3>Broj poslova po mesecu</h3>
+<div class="chart-container">
+      <canvas  id="Bars" >{{ chart1 }}</canvas>
+</div>
+<br>
+
+<h3>Raspodela posla između dekoratera</h3>
+<div class="chart-container" >
+      <canvas  id="Pie" >{{ chart2 }}</canvas>
+</div>
+<br>
+
+<h3>Procenat ukupnog posla firme po danu</h3>
+<div class="chart-container">
+      <canvas  id="Histogram" >{{ chart3 }}</canvas>
+</div>
+<br>

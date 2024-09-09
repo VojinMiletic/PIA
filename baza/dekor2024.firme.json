@@ -1,0 +1,154 @@
+[{
+  "_id": {
+    "$oid": "66b8e9ffde20b71aadfae862"
+  },
+  "adresa": "Guča bb",
+  "naziv": "Firma1",
+  "kontakt_osoba": "064555333",
+  "ocene": "5,2,5",
+  "usluge": [
+    {
+      "usluga": "Ćiščenje bazena",
+      "cena": 50
+    },
+    {
+      "usluga": "Zidanje bazena",
+      "cena": 4000
+    },
+    {
+      "usluga": "Zamena cevi",
+      "cena": 100
+    },
+    {
+      "usluga": "Sadnja drveća",
+      "cena": 120
+    },
+    {
+      "usluga": "Postavljanje stolova",
+      "cena": 10
+    },
+    {
+      "usluga": "Dekoracija bašte",
+      "cena": 60
+    },
+    {
+      "usluga": "Bonsai",
+      "cena": 130
+    }
+  ],
+  "dekoratori": "gagi,andra,gori",
+  "godisnji_odmor": "2024-08-15/2024-08-31",
+  "komentari": [
+    "Odlična saradnja, svaka preporuka",
+    "Sve pohvale za majstore!",
+    "Majstor Gagi je odlično uradio posao."
+  ],
+  "lokacija": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46095.05493678449!2d20.197333138710814!3d43.77408492803814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4757761b297dae0d%3A0xa513fac47d720398!2z0JPRg9GH0LA!5e0!3m2!1ssr!2srs!4v1723395054946!5m2!1ssr!2srs",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66b8f3bade20b71aadfae8c6"
+  },
+  "adresa": "Ilije Garašanina bb",
+  "naziv": "Firma2",
+  "kontakt_osoba": "060222222",
+  "ocene": "5,5,5",
+  "usluge": [
+    {
+      "usluga": "Zidanje bazena",
+      "cena": 5000
+    },
+    {
+      "usluga": "Sadnja drveća ",
+      "cena": 100
+    },
+    {
+      "usluga": "Bonsai",
+      "cena": 100
+    },
+    {
+      "usluga": "Oblikovanje žive ograde",
+      "cena": 140
+    },
+    {
+      "usluga": "Postavljanje ukrasnog kamenja",
+      "cena": 40
+    }
+  ],
+  "dekoratori": "pera,dule",
+  "godisnji_odmor": "2024-08-25/2024-08-31",
+  "komentari": [
+    "Super odrađeno!",
+    "Odličan posao!",
+    "Savršeno!"
+  ],
+  "lokacija": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.5737855950724!2d20.47075687518618!3d44.809874076859494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a7aa371375f8d%3A0xd82b2ca0bc5bd2d8!2z0JjQu9C40ZjQtSDQk9Cw0YDQsNGI0LDQvdC40L3QsCwg0JHQtdC-0LPRgNCw0LQ!5e0!3m2!1ssr!2srs!4v1723396990743!5m2!1ssr!2srs",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66bb3b3c23c884780e08fea3"
+  },
+  "adresa": "Venijamina Marinkovića bb",
+  "naziv": "Firma3",
+  "kontakt_osoba": "065777777",
+  "ocene": "5,5",
+  "usluge": [
+    {
+      "usluga": "Sadnja drveća",
+      "cena": 100
+    },
+    {
+      "usluga": "Zidanje bazena",
+      "cena": 3500
+    },
+    {
+      "usluga": "Čišćenje bazena",
+      "cena": 350
+    },
+    {
+      "usluga": "Dekorisanje eksterijera",
+      "cena": 200
+    }
+  ],
+  "dekoratori": "migi,mare",
+  "godisnji_odmor": "2024-08-14/2024-08-20",
+  "komentari": [
+    "Majstor Migi je kao i uvek bio na vrhuncu zadatka, sve pohvale!"
+  ],
+  "lokacija": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.7571848357397!2d20.23914147510505!3d43.56994245781333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4757bdb747802e6b%3A0xcd9e231518d18f7e!2z0JLQtdC90LjRmNCw0LzQuNC90LAg0JzQsNGA0LjQvdC60L7QstC40ZvQsA!5e0!3m2!1ssr!2srs!4v1723546343179!5m2!1ssr!2srs",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c7876c4b4e32a285c84fc8"
+  },
+  "adresa": "Braće Jerković, Beograd",
+  "naziv": "Firma4",
+  "kontakt_osoba": "065111111",
+  "ocene": "",
+  "usluge": [
+    {
+      "usluga": "Zidanje bazena",
+      "cena": 3000
+    },
+    {
+      "usluga": "Bonsai",
+      "cena": 130
+    },
+    {
+      "usluga": "Zidanje fontane",
+      "cena": 1500
+    },
+    {
+      "usluga": "Postavljanje trave",
+      "cena": 600
+    }
+  ],
+  "dekoratori": "nena,bodzi",
+  "godisnji_odmor": "2024-08-04/2024-08-11",
+  "komentari": [],
+  "lokacija": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22660.306543269842!2d20.47009106857202!3d44.76982961629178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a70faa644ec3b%3A0xfc429552cd8c9fee!2z0JHRgNCw0ZvQtSDQiNC10YDQutC-0LLQuNGbLCDQkdC10L7Qs9GA0LDQtA!5e0!3m2!1ssr!2srs!4v1724352274654!5m2!1ssr!2srs",
+  "__v": 0
+}]

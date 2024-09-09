@@ -1,0 +1,108 @@
+<h3>Početna strana</h3>
+
+Prijavite se<br>
+<input type="text" placeholder="Korisnicko ime" [(ngModel)]="k.kor_ime"><br>
+<input type="password" placeholder="Lozinka" [(ngModel)]="lozinka"><br>
+<button (click)="prijava()">Prijava</button><br>
+<span style="color: red;">
+    {{poruka}}
+    <br>
+</span>
+Nemate nalog? Idi na <a class="custom-link" (click)="registracija()">registraciju</a>
+<br><br>
+
+<div class="container-fluid">
+    <div class="list-group">
+      <div class="list-group-item d-flex justify-content-between align-items-center">
+        Broj dekorisanih bašta:
+        <span class="badge bg-success rounded-pill">{{brojZavrsenihBasta()}}</span>
+      </div>
+      <div class="list-group-item d-flex justify-content-between align-items-center">
+        Broj vlasnika:
+        <span class="badge bg-success rounded-pill">{{brojVlasnika()}}</span>
+      </div>
+      <div class="list-group-item d-flex justify-content-between align-items-center">
+        Broj dekoratera:
+        <span class="badge bg-success rounded-pill">{{brojDekoratera()}}</span>
+      </div>
+      <div class="list-group-item d-flex justify-content-between align-items-center">
+        Broj zakazanih poslova u poslednjih:
+        <div>
+          <div class="text-muted">24 sata:</div>
+          <span class="badge bg-success rounded-pill">{{brojZahteva(1)}}</span>
+        </div>
+        <div>
+          <div class="text-muted">7 dana:</div>
+          <span class="badge bg-success rounded-pill">{{brojZahteva(7)}}</span>
+        </div>
+        <div>
+          <div class="text-muted">30 dana:</div>
+          <span class="badge bg-success rounded-pill">{{brojZahteva(30)}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+<br><br>
+
+
+<h4>Spisak firmi:</h4>
+<table class="no-style">
+    <tr>
+        <td>
+            <input type="text" #naziv placeholder="Naziv firme"> 
+            <input type="text" #adresa placeholder="Adresa firme">
+        </td>
+        <td>
+            &nbsp;<button (click)="odabraneFirme(naziv.value, adresa.value)">Pretraži</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="radio" value="naziv" name="kriterijum" [(ngModel)]="kriterijum" >Po nazivu
+            <input type="radio" value="adresa" name="kriterijum" [(ngModel)]="kriterijum">Po adresi
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" value="rastuce" name="poredak" [(ngModel)]="poredak">Rastuce
+            <input type="radio" value="opadajuce" name="poredak" [(ngModel)]="poredak">Opadajuce
+        </td>
+        <td>
+            &nbsp;<button (click)="sortiraj()">Sortiraj</button>
+        </td>
+    </tr>
+</table>
+<br><br>
+<span *ngIf="filtriraneFirme.length != 0">
+    <table border="1px">
+        <tr>
+            <th>Naziv</th>
+            <th>Adresa</th>
+            <th>Dekorateri</th>
+        </tr>
+        <tr *ngFor="let f of filtriraneFirme">
+            <td>{{f.naziv}}</td>
+            <td>{{f.adresa}}</td>
+            <td>
+                <ul>
+                    <li *ngFor="let d of dohvatiDekoratere(f)">
+                        {{d.ime}} {{d.prezime}}
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <br>
+</span>
+<span *ngIf="filtriraneFirme.length == 0"> 
+    <br>
+    Ni jedna firma ne odgovara vašoj pretrazi.
+</span>
+<br>
+<h3>Galerija</h3>
+<div class="table-container">
+    <table>
+        <tr>
+            <td *ngFor="let z of  zahteviSaSlikom()">
+                <img [src]="z.slika" alt="" width="300px">
+            </td>
+        </tr>
+    </table>
+</div>

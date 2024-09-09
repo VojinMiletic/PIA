@@ -1,0 +1,34 @@
+<h3>Ovde možete promeniti vašu lozinku</h3>
+
+<table class="no-style">
+    <tr>
+        
+        <td>Stara lozinka</td>
+        <td> <input type="password" [(ngModel)]="staraLozinka" > </td>
+    </tr>
+    <tr>
+        <td>Nova lozinka</td>
+        <td> <input type="password" [(ngModel)]="novaLozinka" (input)="proveriLozinku()"> </td>
+        <td>
+            <span style="color: red;" *ngIf="proveriLozinku() == false">
+                {{porukaLozinka}}
+            </span>
+            <span style="color: blue;" *ngIf="proveriLozinku() == true">
+                {{porukaLozinka}}
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td>Ponovite <br> novu lozinku</td>
+        <td> <input type="password" [(ngModel)]="ponovljenaNovaLozinka" > </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <button (click)="promeniLozinku()"> Promeni lozinku</button> &nbsp;
+            <button (click)="nazad()"> Odustani </button>
+        </td>
+    </tr>
+</table>
+<span style="color:red">
+    {{porukaGreske}}
+</span>

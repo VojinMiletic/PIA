@@ -1,0 +1,346 @@
+<h3>Dobro došli</h3>
+<button (click)="odjava()">Odjava</button><br><br>
+
+Ne sviđa Vam se lozinka? <a (click)="promenaLozinke(ja)" class="custom-link"> Promena lozinke</a> <br><br>
+
+<span *ngIf="vlasnici.length != 0">
+<h4>Spisak vlasnika:</h4>
+<table border="1px" >
+    <tr>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Korisničko ime</th>
+        <th>Mejl</th>
+        <th>Slika</th>
+    </tr>
+    <tr *ngFor="let v of vlasnici">
+        <td>{{v.ime}}</td>
+        <td>{{v.prezime}}</td>
+        <td>{{v.kor_ime}}</td>
+        <td>{{v.mejl}}</td>
+        <td> <img [src]="dohvatiSliku(v)" width="100px" height="100px" alt=""></td>
+        <td> 
+            <button (click)="izmeniPodatkeKorisnika(v)">Izmeni</button>
+        </td>
+        <td>
+            <button (click)="blokirajKorisnika(v)">Blokiraj</button>
+        </td>
+    </tr>
+</table>
+<br>
+</span>
+
+<span *ngIf="dekorateri.length != 0">
+<h4>Spisak dekoratera:</h4>
+<table border="1px">
+    <tr>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Korisničko ime</th>
+        <th>Mejl</th>
+        <th>Slika</th>
+    </tr>
+    <tr *ngFor="let d of dekorateri">
+        <td>{{d.ime}}</td>
+        <td>{{d.prezime}}</td>
+        <td>{{d.kor_ime}}</td>
+        <td>{{d.mejl}}</td>
+        <td> <img [src]="dohvatiSliku(d)" width="100px" height="100px" alt=""></td>
+        <td> 
+            <button (click)="izmeniPodatkeKorisnika(d)">Izmeni</button>
+        </td>
+        <td>
+            <button (click)="blokirajKorisnika(d)">Blokiraj</button>
+        </td>
+    </tr>
+</table>
+<br>
+</span>
+
+<span *ngIf="neodobreni.length != 0">
+<h4>Vlasnici koji su podneli zahtev za registraciju:</h4>
+<table border="1px">
+    <tr>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Korisničko ime</th>
+        <th>Mejl</th>
+        <th>Slika</th>
+    </tr>
+    <tr *ngFor="let n of neodobreni">
+        <td>{{n.ime}}</td>
+        <td>{{n.prezime}}</td>
+        <td>{{n.kor_ime}}</td>
+        <td>{{n.mejl}}</td>
+        <td> <img [src]="dohvatiSliku(n)" width="100px" height="100px" alt=""></td>
+        <td><button (click)="odobriRegistraciju(n)">Odobri</button></td>
+        <td><button (click)="odbijRegistraciju(n)">Odbij</button></td>
+    </tr>
+</table>
+<br>
+</span>
+
+<span *ngIf="blokirani.length != 0">
+<h4>Blokirani korisnici:</h4>
+<table border="1px">
+    <tr>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Korisničko ime</th>
+        <th>Mejl</th>
+        <th>Tip</th>
+        <th>Slika</th>
+    </tr>
+    <tr *ngFor="let b of blokirani">
+        <td>{{b.ime}}</td>
+        <td>{{b.prezime}}</td>
+        <td>{{b.kor_ime}}</td>
+        <td>{{b.mejl}}</td>
+        <td>{{b.tip}}</td>
+        <td> <img [src]="dohvatiSliku(b)" width="100px" height="100px" alt=""></td>
+        <td>
+            <button (click)="odblokirajKorisnika(b)">Odblokiraj</button>
+        </td>
+    </tr>
+</table>
+<br>
+</span>
+<br>
+
+<span *ngIf="firme.length != 0">
+    <h4>Spisak firmi:</h4>
+    <table border="1px">
+        <tr>
+            <th>Naziv</th>
+            <th>Kontakt telefon</th>
+            <th class="limited-width">Dekorateri</th>
+            <th>Usluge</th>
+            <th>Lokacija</th>
+            <th>Dodaj uslugu</th>
+            <th>Dodaj dekoratera</th>
+        </tr>
+        <tr *ngFor="let f of firme">
+            <td>{{f.naziv}}</td>
+            <td>{{f.kontakt_osoba}}</td>
+            <td class="limited-width">{{f.dekoratori}}</td>
+            <td>
+                <div class="table-container">
+                    <table >
+                        <tr>
+                            <td style="font-weight: bold;">Naziv</td>
+                            <td style="font-weight: bold;">Cena</td>
+                        </tr>
+                        <tr *ngFor="let u of f.usluge">
+                            <td>{{u.usluga}}</td>
+                            <td> {{u.cena}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td>
+                <iframe [src]="dajLokaciju(f)" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </td>
+            <td>
+                <input type="text" placeholder="Naziv usluge" #naziv><br>
+                <input type="number" placeholder="Cena" #cena><br>
+                <button (click)="dodajUslugu(f, naziv.value, cena.value)">Dodaj uslugu</button>
+            </td>
+            <td>
+                <div class="table-container-2">
+                    <table>
+                        <tr *ngFor="let d of slobodniDekorateri()">
+                            <td><input type="radio" name="f.naziv" value="d.kor_ime" (click)="odaberiZaUFirmu(d.kor_ime, $event)"> &nbsp;
+                            {{d.kor_ime}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <button (click)="dodajDekorateraUFirmu(f)">Dodaj</button>
+                
+                
+            </td>
+        </tr>
+    </table>
+    <br>
+</span>
+    <br>
+
+
+
+<a (click)="otvoriDodajDekoratera()" class="custom-link"> >Dodaj novog dekoratera </a><br><br>
+
+<span *ngIf="prikaz == 1" >
+<br>
+<table class="no-style">
+    <tr>
+        <td>
+            Korisničko ime: 
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="noviDekorater.kor_ime">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Lozinka:  
+        </td>
+        <td>
+            <input type="password" [(ngModel)]="lozinka" (input)="proveriLozinku(lozinka)"> &nbsp;
+            <span *ngIf="proveriLozinku(lozinka)" style="color: blue;">
+                {{porukaLozinka}}
+            </span>
+            <span *ngIf="!proveriLozinku(lozinka) && lozinka.length != 0" style="color: red;">
+                {{porukaLozinka}}
+            </span>
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            Mejl:  
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="noviDekorater.mejl">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Ime: 
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="noviDekorater.ime">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Prezime: 
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="noviDekorater.prezime">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Adresa:  
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="noviDekorater.adresa">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Telefon:   
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="noviDekorater.telefon">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Broj kreditne kartice:    
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="noviDekorater.broj_kartice"> &nbsp;
+            <img [src]="proveriKarticu(noviDekorater)" alt="" height="35px">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Pol:
+        </td>
+        <td>
+            <input type="radio" value="M" name="pol" [(ngModel)]="noviDekorater.pol"> Muški
+            <input type="radio" value="Z" name="pol" [(ngModel)]="noviDekorater.pol"> Ženski
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Slika:
+        </td>
+        <td>
+            <input type="file" (input)="ubaciSliku($event)">
+        </td>
+    </tr>
+</table>
+<br>
+<button (click)="dodajDekoratera()">Dodaj dekoratera</button><br>
+<span style="color: red;">
+    {{porukaGreske}}
+</span>
+<br>
+</span>
+
+<a (click)="otvoriDodajFirmu()" class="custom-link"> >Dodaj novu firmu</a><br><br>
+
+<span *ngIf="prikaz == 2">
+<table class="no-style">
+    <tr>
+        <td>
+           Naziv
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="novaFirma.naziv">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Adresa  
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="novaFirma.adresa">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Lokacija  
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="novaFirma.lokacija">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Postavite uslugu(naziv i cena)
+        </td>
+        <td>
+            <input type="text" placeholder="Naziv usluge" [(ngModel)]="novaUsluga.usluga"><br>
+            <input type="number" placeholder="Cena usluge" [(ngModel)]="novaUsluga.cena"><br>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Odaberite dekoretere 
+        </td>
+        <td>
+            <ul>
+                <li *ngFor="let d of slobodniDekorateri()">
+                    <input type="checkbox" (click)="odaberiDekoratera(d, $event)">{{d.kor_ime}}
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Kontakt osoba 
+        </td>
+        <td>
+            <ul>
+                <li *ngFor="let d of odabraniDekorateri">
+                    <input type="radio" value="d.telefon" name="kontakt" (click)="odaberiKontakt(d.telefon, $event)">{{d.kor_ime}}
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Godišnji odmor</td>
+        <td>
+            Početak:<input type="date" [(ngModel)]="datumOd">
+            Kraj:<input type="date" [(ngModel)]="datumDo">
+        </td>
+    </tr>
+</table>
+<br>
+<button (click)="dodajFirmu()">Dodaj firmu</button>
+<span style="color: red;">
+    {{porukaGreskeFirma}}
+</span>
+</span>

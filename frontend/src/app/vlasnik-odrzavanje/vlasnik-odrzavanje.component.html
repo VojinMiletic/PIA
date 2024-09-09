@@ -1,0 +1,73 @@
+<button (click)="nazad()">Nazad</button> &nbsp;
+<button (click)="odjava()">Odjava</button><br>
+
+<h3>Završeni poslovi</h3>
+
+<table border="1px">
+    <tr>
+        <th>Id</th>
+        <th>Firma</th>
+        <th>Datum završetka</th>
+        <th>Datum poslednjeg <br> održavanja</th>
+        <th>Broj bazena</th>
+        <th>Broj fontana</th>
+    </tr>
+    <ng-container *ngFor="let z of zavrseniPoslovi(); let i = index">
+        <tr >
+            <td>{{z.idZ}}</td> 
+            <td>{{z.firma}}</td>
+            <td>{{z.datum_kraj}}</td>
+            <td>{{datumPoslednjegOdrzavanja(z)}}</td>
+            <td>{{brojBazena(z)}}</td>
+            <td>{{brojFontana(z)}}</td>
+            <td *ngIf="daLiPrikazatiOdrzavanje(z)">
+                <button (click)="prikazi(i)">Održavanje</button>
+            </td>
+        </tr>
+        <tr *ngIf="prikaz == i">
+            <td colspan="3" align="center">
+
+                <table cellpadding="5">
+                    <tr>
+                        <td>Datum početka radova</td>
+                    </tr>
+                    <tr>
+                        <td> <input type="datetime-local" [(ngModel)]="novoOdrzavanje.datum_pocetak"> </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <button (click)="dodajOdrzavanje(z)" >Potvrdi</button>
+            </td>
+        </tr>
+    </ng-container>
+</table>
+<span style="color: red;">
+    {{porukaGreska}}
+</span>
+
+<br>
+
+<h3>U procesu održavanja</h3>
+
+<table *ngIf="uProcesuOdrzavanja.length != 0" border="1px">
+    <tr>
+        <th>Id posla</th>
+        <th>Id održavanja</th>
+        <th>Firma</th>
+        <th>Status</th>
+        <th>Datum početka</th>
+        <th>Datum završetka</th>
+    </tr>
+    <tr *ngFor="let o of uProcesuOdrzavanja">
+        <td>{{o.idZ}}</td>
+        <td>{{o.idO}}</td>
+        <td>{{o.firma}}</td>
+        <td>{{o.status}}</td>
+        <td>{{dajDatum(o.datum_pocetak)}}</td>
+        <td>{{dajDatum(o.datum_kraj)}}</td>
+    </tr>
+</table>
+<span *ngIf="uProcesuOdrzavanja.length == 0">
+    Nema objekata u procesu održavanja.
+</span>

@@ -1,0 +1,70 @@
+<button (click)="nazad()">Nazad</button>&nbsp;
+<button (click)="odjava()">Odjava</button><br><br>
+
+
+<h3>Spisak firmi:</h3>
+<table class="no-style">
+    <tr>
+        <td>
+            <input type="text" #naziv placeholder="Naziv firme"> 
+            <input type="text" #adresa placeholder="Adresa firme">
+        </td>
+        <td>
+            &nbsp; <button (click)="odabraneFirme(naziv.value, adresa.value)">Pretraži</button>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <input type="radio" value="naziv" name="kriterijum" [(ngModel)]="kriterijum" >Po nazivu
+            <input type="radio" value="adresa" name="kriterijum" [(ngModel)]="kriterijum">Po adresi
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" value="rastuce" name="poredak" [(ngModel)]="poredak">Rastuce
+            <input type="radio" value="opadajuce" name="poredak" [(ngModel)]="poredak">Opadajuce
+        </td>
+        <td>
+            &nbsp; <button (click)="sortiraj()">Sortiraj</button>
+        </td>
+    </tr>
+    
+</table>
+<br><br>
+<span *ngIf="filtriraneFirme.length != 0">
+    <table border="1px">
+        <tr>
+            <th>Naziv</th>
+            <th>Adresa</th>
+            <th>Dekorateri</th>
+            <th>Prosecna ocena</th>
+        </tr>
+        <tr *ngFor="let f of filtriraneFirme">
+            <td>
+                <a (click)="detaljiFirme(f)" class="custom-link"> {{f.naziv}} </a>
+            </td>
+            <td>{{f.adresa}}</td>
+            <td>
+                <ul>
+                    <li *ngFor="let d of dohvatiDekoratere(f)">
+                        {{d.ime}} {{d.prezime}}
+                    </li>
+                </ul>
+            </td>
+            <td>
+                {{prosecnaOcena(f)}} &nbsp;
+                <div class="star-rating">
+                    <span *ngFor="let z of zvezde; let i = index" 
+                          [ngClass]="{'filled': i < prosecnaOcena(f) - prosecnaOcena(f) % 1}">
+                      ★
+                    </span>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br>
+</span>
+<span *ngIf="filtriraneFirme.length == 0"> 
+    <br>
+    Ni jedna firma ne odgovara vašoj pretrazi.
+</span>
+<br>
+

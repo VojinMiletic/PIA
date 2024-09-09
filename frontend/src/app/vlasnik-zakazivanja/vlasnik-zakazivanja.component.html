@@ -1,0 +1,81 @@
+<button (click)="nazad()">Nazad</button> &nbsp;
+<button (click)="odjava()">Odjava</button><br>
+
+<h3>Spisak aktivnih zakazivanja</h3>
+<table border="1px">
+    <tr>
+        <th>Firma</th>
+        <th>Datum zakazivanja</th>
+        <th>Datum početka</th>
+        <th>Usluge</th>
+        <th>Status</th>
+    </tr>
+    <tr *ngFor="let z of aktivniZahtevi()">
+        <td>{{z.firma}}</td>
+        <td>{{dajDatum(z.datum_zakazivanja)}}</td>
+        <td>{{dajDatum(z.datum_pocetak)}}</td>
+        <td>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <td style="font-weight: bold;">Naziv</td>
+                        <td style="font-weight: bold;">Cena</td>
+                    </tr>
+                    <tr *ngFor="let u of z.usluge">
+                        <td>{{u.usluga}}</td>
+                        <td>{{u.cena}}</td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td>{{z.status}}</td>
+        <td><button (click)="otkazi(z)">Otkaži</button></td>
+    </tr>
+</table><br>
+
+<h3>Arhiva zakazivanja</h3>
+<table border="1px">
+    <tr>
+        <th>Firma</th>
+        <th>Datum početka</th>
+        <th>Datum završetka</th>
+        <th>Status</th>
+    </tr>
+    <ng-container *ngFor="let z of stariZahtevi(); let i = index">
+        <tr >
+            <td>{{z.firma}}</td>
+            <td>{{dajDatum(z.datum_pocetak)}}</td>
+            <td>{{z.datum_kraj}}</td>
+            <td>{{z.status}}</td>
+            <td *ngIf="z.komentar != ''">{{z.komentar}}</td>
+            <td *ngIf="z.ocena != 0">{{z.ocena}}</td>
+            <td *ngIf="(z.komentar == '' || z.ocena == 0) && z.status != 'odbijen'">
+                <button (click)="prikazi(i)">Oceni</button>
+            </td>
+        </tr>
+        <tr *ngIf="prikaz == i">
+            <td colspan="3" align="center">
+
+                <table cellpadding="5">
+                    <tr>
+                        <td>Ostavite komentar</td>
+                        <td>Ocena</td>
+                    </tr>
+                    <tr>
+                        <td><textarea [(ngModel)]="komentar"> </textarea>  </td>
+                        <td class="rating">
+                            <input type="radio" value="5" name="ocena" id="star5"  [(ngModel)]="ocena"><label for="star5">★</label>
+                            <input type="radio" value="4" name="ocena" id="star4"  [(ngModel)]="ocena"><label for="star4">★</label>
+                            <input type="radio" value="3" name="ocena" id="star3"  [(ngModel)]="ocena"><label for="star3">★</label>
+                            <input type="radio" value="2" name="ocena" id="star2"  [(ngModel)]="ocena"><label for="star2">★</label>
+                            <input type="radio" value="1" name="ocena" id="star1"  [(ngModel)]="ocena"><label for="star1">★</label>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <button (click)="oceni(z)">Potvrdi</button>
+            </td>
+        </tr>
+    </ng-container>
+</table>

@@ -1,0 +1,74 @@
+Izmenite podatke:<br>
+<table class="no-style">
+    <tr>
+        <td>
+            Mejl:  
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="k.mejl">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Ime: 
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="k.ime">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Prezime: 
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="k.prezime">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Adresa:  
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="k.adresa">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Telefon:   
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="k.telefon">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Broj kreditne kartice:    
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="k.broj_kartice"> &nbsp;
+            <img [src]="proveriKarticu(k)" alt=""  height="35px">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Pol:
+        </td>
+        <td>
+            <input type="radio" value="M" name="pol" [(ngModel)]="k.pol"> Muški
+            <input type="radio" value="Z" name="pol" [(ngModel)]="k.pol"> Ženski
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Slika:
+        </td>
+        <td>
+            <input type="file" (input)="ubaciSliku($event)">
+        </td>
+        <td> <img [src]="dohvatiSliku(k)" width="100px" alt=""></td>
+    </tr>
+</table>
+<button (click)="izmeniKorisnika()">Primeni</button> &nbsp; <button (click)="nazad()">Odustani</button><br>
+<span style="color: red;">
+    {{poruka}}
+</span>

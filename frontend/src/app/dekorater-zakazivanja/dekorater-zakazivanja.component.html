@@ -1,0 +1,81 @@
+<button (click)="nazad()">Nazad</button> &nbsp;
+<button (click)="odjava()">Odjava</button> <br><br>
+<h3>Spisak neobrađenih zakazivanja</h3>
+<span *ngIf="neobradjeniZahtevi().length == 0">
+    Trenutno nema neobrađenih zahteva
+</span>
+<table border="1px" *ngIf="neobradjeniZahtevi().length != 0">
+    <tr>
+        <th>Vlasnik</th>
+        <th>Datum početka</th>
+        <th>Status</th>
+        <th>Crtež</th>
+        <th>Vreme završetka</th>
+        <th>Odbijenica</th>
+    </tr>
+    <tr *ngFor="let z of neobradjeniZahtevi()">
+        <td>{{z.vlasnik}}</td>
+        <td>{{dajDatum(z.datum_pocetak)}}</td>
+        <td>{{z.status}}</td>
+        <td> <a (click)="prikaziCrtez(z)" class="custom-link" >Prikaži</a></td>
+        <td style="text-align:center;"> 
+            <input type="datetime-local" [(ngModel)]="z.datum_kraj"> <br>
+            <button (click)="prihvatiZahtev(z)">Prihvati</button> 
+        </td>
+        <td style="text-align:center;"> 
+            <input type="text" [(ngModel)]="z.odbijnica" placeholder="Zašto odbijate zahtev"> <br>
+            <button (click)= odbijZahtev(z)>Odbij</button> 
+        </td>
+    </tr>
+</table>
+<span style="color: red;">
+    {{porukaGreske}}
+</span>
+<br>
+<br>
+<h3>Spisak prihvaćenih zahteva</h3>
+<span *ngIf="prihvaceniZahtevi().length == 0">
+    Trenutno nemate zaduženja
+</span>
+<table border="1px" *ngIf="prihvaceniZahtevi().length != 0">
+    <tr>
+        <th>Vlasnik</th>
+        <th>Datum početka</th>
+        <th>Datum kraja</th>
+    </tr>
+    <tr *ngFor="let z of prihvaceniZahtevi()">
+        <td>{{z.vlasnik}}</td>
+        <td>{{dajDatum(z.datum_pocetak)}}</td>
+        <td>{{dajDatum(z.datum_kraj)}}</td>
+        <td *ngIf="trenutniZahtev(z)">
+            <button (click)="zavrsiZahtev(z)">Završi</button>
+        </td>
+    </tr>
+</table>
+<br><br>
+
+<h3>Spisak završenih poslova</h3>
+<span *ngIf="zavrseniPoslovi().length == 0">
+    Još niste završili ni jedan posao.
+</span>
+<table border="1px" *ngIf="zavrseniPoslovi().length != 0">
+    <tr>
+        <th>Vlasnik</th>
+        <th>Datum početka</th>
+        <th>Datum kraja</th>
+        <th>Slika</th>
+    </tr>
+    <tr *ngFor="let z of zavrseniPoslovi()">
+        <td>{{z.vlasnik}}</td>
+        <td>{{dajDatum(z.datum_pocetak)}}</td>
+        <td>{{z.datum_kraj}}</td>
+        <td *ngIf="z.slika == ''">
+            <input type="file" (input)="ubaciSliku(z, $event)">
+        </td>
+        <td *ngIf="z.slika != ''">
+            <img [src]="z.slika" width="100px" alt="">
+        </td>
+    </tr>
+</table>
+<br><br>
+

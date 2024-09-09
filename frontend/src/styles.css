@@ -1,0 +1,86 @@
+/* You can add global styles to this file, and also import other style files */
+table:not(.no-style) {
+    border: 1px solid #dee2e6;
+    border-collapse: collapse;
+    
+}
+
+table:not(.nemoj) th {
+    background-color: #0ec94c !important;
+    color: white !important;
+}
+
+table:not(.no-style) th, 
+table:not(.no-style) td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    border: 1px solid #dee2e6;
+    text-align: center;
+  }
+  
+  button {
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    border: 1px solid transparent;
+    background-color: #0ec94c;
+    color: white;
+    
+  }
+
+  button:hover, .btn:hover {
+    font-weight: bold; /* Deblji font pri prelasku mišem */
+  }
+
+
+  .navbar {
+    background-color: #0ec94c !important; /* Zeleni ton pozadine */
+  }
+  
+  .navbar-nav .nav-item .nav-link {
+    color: white; /* Bela boja teksta */
+    
+  }
+  
+  .navbar-nav .nav-item .nav-link:hover {
+    font-weight: bold; /* Podebljanje teksta pri prelasku mišem */
+    color: white; /* Svetlija boja teksta pri prelasku mišem */
+    cursor: pointer;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: beige;
+  }
+  
+  .container {
+    flex: 1;
+  }
+  
+  /* Stilizujte footer */
+  footer {
+    background-color: #0ec94c !important; /* Zelena boja */
+    color: white !important; /* Bele boje za tekst */
+    text-align: center !important; /* Centriranje teksta */
+    padding: 10px 0 !important; /* Padding za prostor oko teksta */
+    padding: 1rem !important;  /* Odlazi od sadržaja, možeš prilagoditi */
+  }
+
+
+  .custom-link {
+    font-size: 1.1rem; /* Malo veći font */
+    text-decoration: none; /* Uklanja donju crtu */
+    color:#0ec94c !important;
+  }
+  
+  .custom-link:hover {
+    color: #0ec94c !important; /* Svetlija zelena boja pri prelasku mišem */
+    font-weight: bolder; /* Deblji font pri prelasku mišem */
+    cursor: pointer;
+  }
+
+.badge {
+    background-color: #0ec94c !important;
+    color:white !important
+}

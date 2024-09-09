@@ -1,0 +1,33 @@
+.table-container {
+    max-height: 150px; /* Fiksna visina kontejnera tabele */
+    overflow-y: auto;  /* Dodaje vertikalnu skrol traku kada sadržaj prelazi visinu kontejnera */
+}
+
+.rating {
+    display: flex;
+    direction: rtl;
+    font-size: 2rem;
+    justify-content: center;
+  }
+  
+  .rating input {
+    display: none; /* Sakrij standardne radio dugmadi */
+  }
+  
+  .rating label {
+    cursor: pointer;
+    color: lightgray; /* Boja za neizabrane zvezdice */
+  }
+  
+  .rating input:checked ~ label {
+    color: gold; /* Boja za izabrane zvezdice */
+  }
+  
+  .rating input:checked ~ label ~ label {
+    color: gold; /* Boja za sve prethodne zvezdice nakon poslednje izabrane */
+  }
+  
+  .rating label:hover,
+  .rating label:hover ~ label {
+    color: gold; /* Boja za zvezdice pri prelazu miša */
+  }

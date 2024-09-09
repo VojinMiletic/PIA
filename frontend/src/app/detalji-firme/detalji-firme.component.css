@@ -1,0 +1,22 @@
+.table-container {
+    max-height: 150px; /* Fiksna visina kontejnera tabele */
+    overflow-y: auto;  /* Dodaje vertikalnu skrol traku kada sadržaj prelazi visinu kontejnera */
+}
+
+.komentari {
+    max-width: 600px;
+  }
+  
+  .komentar {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+  }
+  
+  .komentar p {
+    margin: 0;
+  }
+
+  canvas {
+    background-color: white;
+    border: 2px solid #000; /* Crni okvir debljine 2px */
+  }

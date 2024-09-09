@@ -1,0 +1,34 @@
+<button (click)="nazad()">Nazad</button> &nbsp;
+<button (click)="odjava()">Odjava</button>
+<br><br>
+
+<h3>Neobrađena održavanja</h3>
+<table *ngIf="neobradjenaOdrzavanja.length != 0" border="1px">
+    <tr>
+        <th>Id zahteva</th>
+        <th>Id održavanja</th>
+        <th>Vlasnik</th>
+        <th>Datum početka</th>
+    </tr>
+    <ng-container *ngFor="let o of neobradjenaOdrzavanja; let i = index">
+        <tr>
+            <td>{{o.idO}}</td>
+            <td>{{o.idZ}}</td>
+            <td>{{o.vlasnik}}</td>
+            <td>{{dajDatum(o.datum_pocetak)}}</td>
+            <td><button (click)="prikazi(i)">Prihvati</button></td>
+            <td><button (click)="odbij(o)">Odbij</button></td>
+        </tr>
+        <tr *ngIf="prikaz == i" style="background-color: aqua;">
+            <td colspan="2">Datum završetka</td>
+            <td colspan="2"><input type="datetime-local" [(ngModel)]="o.datum_kraj" ></td>
+            <td colspan="2"><button (click)="prihvati(o)"> Potvrdi</button></td>
+        </tr>
+    </ng-container>
+</table>
+<span *ngIf="neobradjenaOdrzavanja.length == 0">
+    Nemate pristiglih zahteva za održavanja.
+</span>
+<span style="color: red;">
+    {{porukaGreska}}
+</span>
